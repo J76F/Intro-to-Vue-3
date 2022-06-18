@@ -1,9 +1,10 @@
 const app = Vue.createApp({
     data() {
         return {
-            product: 'Sokken',
-            image: './assets/images/socks_green.jpg',
-            url: 'https://www.jfaber.nl'
+            product: 'Socks',
+            image: './assets/images/socks_blue.jpg',
+            inventory: 8,
+            onSale: true,
         }
     }
 })
