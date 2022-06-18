@@ -20,7 +20,7 @@
           <div class="product-info">
             <h1>{{ product }}</h1>
             <p v-if="inventory > 10">In Voorraad</p>
-            <p v-else="inventory <= 10 && inventory >0">Bijna uitverkocht</p>
+            <p v-else-if="inventory <= 10 && inventory >0">Bijna uitverkocht</p>
             <p v-else="inventory">Niet op Voorraad</p>
             <p v-if="onSale">In de aanbieding</p>
           </div>
