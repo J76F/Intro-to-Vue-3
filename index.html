@@ -6,7 +6,7 @@
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
     <div id="app">
@@ -14,7 +14,16 @@
     </div>
 
     <!-- Import App -->
-    <script src="./main.js"></script>
+    <!-- <script src="./main.js"></script> -->
+    <script>
+      const app = Vue.createApp({
+        data() {
+            return {
+                product : 'Socks'
+            }
+        }
+      })
+    </script>
 
     <!-- Mount App -->
     <script>
