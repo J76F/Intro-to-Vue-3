@@ -50,6 +50,9 @@ Oefenlocatie
         bijv.: variabele -> waarde wordt weergegeven op positie
         Maar je kan ook bewerkingen doen waar dan de uitkomst van wordt weergegeven 
     -->
+    <!-- voorbeeld -->
+        {{ product }} //geeft de waarde van product weer
+        {{ brand + ' ' + product }} //geeft de waarde van brand spatie product
     <!-- Attribute Binding -->
     v-bind:attr="JavaScript-waarde"  --> Afgekort: :attr="JavaScript-waarde"
     <!-- voorbeeld: -->
