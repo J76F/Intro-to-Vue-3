@@ -19,6 +19,7 @@ Oefenlocatie
                 cart:0,
                 product: 'Socks',
                 details: ['50% cotton', '30% wool', '20% polyester'],
+                selectedVariant: 0,
                 variants: [
                     { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
                     { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' },
@@ -33,6 +34,18 @@ Oefenlocatie
         methods: {
             addToCart() {
                 this.cart += 1
+            },
+            updateVariant(index) {
+                this.selectedVariant = index
+            },
+        },
+        // berekeningen op waarden, op te vragen als waarde
+        computed: {
+            title() {
+                return this.brand + ' ' + this.product
+            },
+            image() {
+                return this.variants[this.selectedVariant].image
             },
         }
     })
@@ -81,6 +94,8 @@ Oefenlocatie
         </ul>
         <!-- gelijk principe, maar bind gelijk de v-bind:key aan de variant.id ; voor later makelijk hergebuik-->
         <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+        <!-- en nu met teller (index)-->
+        <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)">{{ variant.color }}</div>
     <!-- Event Handling -->
     v-on:click="javascript-functie-app"  of @click="javascript-functie-app" 
     @mouseover=
@@ -114,5 +129,6 @@ Oefenlocatie
             Add to Cart
         </button>
         <div :class="[isActive ? activeClass : '']"></div>
+    <!-- Computed Properties -->
 
 
