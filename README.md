@@ -23,6 +23,10 @@ Oefenlocatie
                     { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
                     { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' },
                     ],
+                styles: {
+                    color: 'red',
+                    fontSize: '14px'
+                }
             }
         },
         // Functies
@@ -82,5 +86,30 @@ Oefenlocatie
         <button class="button" v-on:click="addToCart">Add to Cart</button>
         <button class="button" @click="addToCart">Add to Cart</button>
         <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
+    <!-- Class & Style Binding -->
+    :style="{ CSS_property: JavaScript-Waarde }" //losse waarde
+    :style="{ JavaScript-Waarde }"  //style object, onder app.data
+    :class="{ CSS_Class: JavaScript-voorwaarde }" // CSS_Class wordt 
+    toegepast wanneer voorwaarde voldoet (toegevoegd aan eventueel een bestaande class).
+    :class="[JavaScript-voorwaarde ? CSS_Class : CSS_Class]" // voorwaarde, een of andere class toepassen. '' is geen class.
+    :disabled="JavaScript-voorwaarde" //werking uitzetten van wanneer waar
+    <!-- voorbeeld: 
+        Let op: Bij gebruik CSS naam gebruik of: (Camel vs Kebab)
+            backgroundColor
+            'background-color'    
+    -->
+        <div 
+            v-for="variant in variants" :key="variant.id"   @mouseover="updateImage(variant.image)" 
+            class="color-circle" 
+            :style="{ backgroundColor: variant.color }">
+        </div>
+        <button 
+            class="button" 
+            :class="{ disabledButton: !inStock }" 
+            :disabled="!inStock" 
+            @click="addToCart">
+            Add to Cart
+        </button>
+        <div :class="[isActive ? activeClass : '']"></div>
 
 
