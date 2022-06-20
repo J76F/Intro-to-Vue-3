@@ -40,7 +40,8 @@ Oefenlocatie
             },
         },
         // berekeningen op waarden, op te vragen als waarde
-        computed: {
+        //<!-- Computed Properties -->
+        computed: { 
             title() {
                 return this.brand + ' ' + this.product
             },
@@ -129,6 +130,6 @@ Oefenlocatie
             Add to Cart
         </button>
         <div :class="[isActive ? activeClass : '']"></div>
-    <!-- Computed Properties -->
+    
 
 
