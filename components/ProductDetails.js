@@ -7,12 +7,9 @@ app.component ('product-details', {
     },
     template:
     /*html*/
-    `<ul>
+    `
+    <ul>
         <li v-for="detail in details">{{ detail }}</li>
-    </ul>`,
-    data() {
-        return {}
-    },
-    methods: {},
-    computed: {}
+    </ul>
+    `
 })
