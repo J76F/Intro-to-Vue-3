@@ -1,4 +1,4 @@
-addEventListener.component('review-list', {
+add.component('review-list', {
     props: {
         reviews: {
             type: Array,
