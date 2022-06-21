@@ -4,6 +4,7 @@ bron: https://www.vuemastery.com/courses/intro-to-vue-3/intro-to-vue3/
 Cursus Vue.js v3 intro
 Oefenlocatie
 --------------------------
+In index.html
 <!-- Import Vue.js -->
 <script src="https://unpkg.com/vue@3"></script>
 <!-- Locatie App -->
@@ -11,7 +12,13 @@ Oefenlocatie
     <!-- Verder opmaak, posities -->
 </div>
 <!-- Import App -->
+<script src="./main.js"></script>
+<!-- Mount App -->
 <script>
+    // positie waar app werkt.
+    const mountedApp = app.mount('#app')
+</script>
+In main.js
     const app = Vue.createApp({
         // Variabelen, Variabele array's
         data() {
@@ -50,12 +57,6 @@ Oefenlocatie
             },
         }
     })
-</script>
-<!-- Mount App -->
-<script>
-    // positie waar app werkt.
-    const mountedApp = app.mount('#app')
-</script>
 --------------------------
 <!-- Verder opmaak, posities -->
     <!-- Waarde ophalen en weergeven -->
@@ -67,7 +68,7 @@ Oefenlocatie
     <!-- voorbeeld -->
         {{ product }} //geeft de waarde van product weer
         {{ brand + ' ' + product }} //geeft de waarde van brand spatie product
-    <!-- Attribute Binding -->
+    <!-- Attribute Binding (waarde ophalen) -->
     v-bind:attr="JavaScript-waarde"  --> Afgekort: :attr="JavaScript-waarde"
     <!-- voorbeeld: -->
         <!-- src attribute, verbinden met  variabele "image" data -->
@@ -130,6 +131,113 @@ Oefenlocatie
             Add to Cart
         </button>
         <div :class="[isActive ? activeClass : '']"></div>
-    
+----------------------
+<!-- Components & Props -->
+Submap: components --> CompX.js
+    app.component('comp-x', {
+        props: {  //variabele die als input kunnen dienen
+            variabele2c: {
+                type: Boolean
+                required: true
+            }
+        }
+        template: //Opmaak
+        /*html*/ 
+        `
+            <div>
+            .....
+            </div>
+        `,
+        data() {
+            variabele1c: 'waarde'
+        },
+        methods: {
+            methode2c() {
+                this.$emit('trigger2c', variabele1c)
+            }
+        },
+        computed: {
+            bereken() {
+                return this.variabele + ' ' + this.variabele
+            },  
+        }
+    })
 
+In index.html:
+<!-- plaats Components -->
+<comp-x :variabele2c="variabele2g" @trigger2c="methode2g"></comp-x>
+<!-- Import Components -->
+<script src="./components/CompX.js"></script>
 
+In main.js:
+    const app = Vue.createApp({
+        data() {
+            return {
+                variabele2g: true,
+                cart: [],
+                ...
+            }
+        },
+        methods: {
+            methode2g(variabele1g) { //variabele1g = variabele1c uit component
+                this.cart.push(variabele1g)
+            }
+        }
+    })
+--------------
+<!-- Input(Form)/Binding (waarde 2 richtingsverkeer (koppelen)) -->
+    v-model="JavaScript-waarde"
+<!-- voorbeeld: -->
+    In ComponentInput.js
+        app.component('review-form', {
+        template:
+            /*html*/
+            `<!-- inputbox, verbinden met  variabele "name" data -->
+            <form @submit.prevent="onSubmit">
+                <label for=""nameid">naamlabel</label>
+                <input id="nameid" v-model="name" />
+                <label for="ratingid">Ratinglabel</label>
+                <select id="ratingid" v-model.number="rating">
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                </select>
+                <input type="submit" value="knoptekst">
+            </form>
+            `,
+            data() {
+                return {
+                    name: '',
+                    rating: null
+                }
+            },
+            methods: {
+                onSubmit() {
+                    let productReview = {
+                        name: this.name,
+                        rating: this.rating,
+                    }
+                    this.$emit('input-submitted', productReview)
+
+                    this.name = ''
+                    this.rating = null
+                }
+           }
+    in index.html
+        <!-- plaats input form component-->
+        <review-form @input-submitted="addInput"></review-form>
+        <!-- Import Components -->
+        <script src="./components/ReviewForm.js"></script>
+    in main.js
+        data() {
+            return {
+                ...
+                reviews: []
+            }
+        },
+        methods: {
+            ...
+            addInput(review) { //review = productRevies
+                this.reviews.push(review)
+            }
+        },
