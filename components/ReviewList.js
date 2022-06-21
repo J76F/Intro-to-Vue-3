@@ -14,7 +14,7 @@ addEventListener.component('review-list', {
             <li v-for="(review, index) in reviews" :key="index">
                 {{ review.name }} gave this {{ review.rating }} stars
                 <br>
-                recommend? {{ review.recommend }}
+                recommend: {{ review.recommend }}
                 <br>
                 "{{ review.review }}"
             <li>
