@@ -5,4 +5,4 @@ Cursus Vue.js v3 intro
 Oefenlocatie
 --------------------------
 
-Zie HowTo.vue voor aantekeningen
+Zie HowToVue.html voor aantekeningen
